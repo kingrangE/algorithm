@@ -1,15 +1,28 @@
 package Hash;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 
 public class number_list {
     public static void main(String[] args) {
-        String[] phone_book = {"119", "97674223", "1195524421"};
+        String[][] phone_book = {{"yellow_hat", "headgear"}, {"blue_sunglasses", "eyewear"}, {"green_turban", "headgear"}};
         solution(phone_book);
     }
-    static boolean solution(String[] phone_book) {
-        Arrays.stream(phone_book).
+    static int solution(String[][] arrays) {
+        HashMap<String, Integer> clothes = new HashMap<>();
 
-        return answer;
+        for (String[] array : arrays) {
+            clothes.put(array[1], clothes.getOrDefault(array[1], 0) + 1);
+        }
+
+        int answer = 1;
+
+        for(Integer cloth : clothes.values()) {
+            answer *= (cloth+1);//옷 종류 + 1 (선택 안하기)
+        }
+
+
+        return answer-1;//모두 다 선택 안하는 경우 제외
     }
 }
