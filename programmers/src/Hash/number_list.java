@@ -1,28 +1,29 @@
 package Hash;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
+import java.util.Comparator;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class number_list {
     public static void main(String[] args) {
-        String[][] phone_book = {{"yellow_hat", "headgear"}, {"blue_sunglasses", "eyewear"}, {"green_turban", "headgear"}};
-        solution(phone_book);
+        String [] phone_book = {"12", "13", "15", "567", "88"};
+        System.out.println(solution(phone_book));
     }
-    static int solution(String[][] arrays) {
-        HashMap<String, Integer> clothes = new HashMap<>();
+    static boolean solution(String[] phone_book) {
+        boolean answer = true;
+        String[] result = Arrays.stream(phone_book).sorted(Comparator.naturalOrder()).toArray(String[]::new);
 
-        for (String[] array : arrays) {
-            clothes.put(array[1], clothes.getOrDefault(array[1], 0) + 1);
+        for(int i = 0 ; i < result.length-1 ; i++) {
+            if(result[i+1].startsWith(result[i])){
+                answer = false;
+                break;
+            }
         }
 
-        int answer = 1;
-
-        for(Integer cloth : clothes.values()) {
-            answer *= (cloth+1);//옷 종류 + 1 (선택 안하기)
-        }
 
 
-        return answer-1;//모두 다 선택 안하는 경우 제외
+        return answer;
     }
 }
+
